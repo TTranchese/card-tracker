@@ -1,14 +1,11 @@
 const {
-  startFetchProcessing,
   fetchExpansions,
   fetchBlueprintsForExpansion,
-} = require("./apiService.js");
+} = require("./services/apiService");
 const {
   storeBlueprints,
-  loadBlueprints,
   storeExpansions,
-  loadExpansions,
-} = require("./storageService.js");
+} = require("./services/storageService");
 
 const main = async () => {
   try {
@@ -19,7 +16,9 @@ const main = async () => {
     for (const expansion of expansions) {
       const blueprints = await fetchBlueprintsForExpansion(expansion.id);
       storeBlueprints(blueprints);
-      console.log(`Blueprints for expansion ID ${expansion.id} fetched and stored successfully.`);
+      console.log(
+        `Blueprints for expansion ID ${expansion.id} fetched and stored successfully.`
+      );
     }
   } catch (error) {
     console.error("Failed to fetch and store blueprints or expansions:", error);
