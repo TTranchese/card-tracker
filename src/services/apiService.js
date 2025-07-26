@@ -1,6 +1,23 @@
 const axios = require("axios");
 const { HOST, JWT_SECRET } = require("../config");
 
+// Test function to check API accessibility
+const testApiConnection = async () => {
+  try {
+    console.log("Testing API connection...");
+    const response = await axios.get(`https://${HOST}/api/v2/info`, {
+      headers: {
+        Authorization: `Bearer ${JWT_SECRET}`,
+      },
+    });
+    console.log("API is accessible:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("API connection test failed:", error.response?.data || error.message);
+    throw error;
+  }
+};
+
 const fetchExpansions = async () => {
   try {
     console.log("Fetching all expansions...");
@@ -62,4 +79,5 @@ module.exports = {
   startFetchProcessing,
   fetchExpansions,
   fetchBlueprintsForExpansion,
+  testApiConnection,
 };

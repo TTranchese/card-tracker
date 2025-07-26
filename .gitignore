@@ -13,6 +13,7 @@ yarn-error.log*
 
 # Database files
 *.db
+.db/
 
 # Config file
 src/config.js
@@ -20,3 +21,6 @@ src/config.js
 # OS-specific files
 .DS_Store
 Thumbs.db
+
+# Postman collection
+card_trader_postman_collection.json

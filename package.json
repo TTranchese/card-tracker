@@ -4,7 +4,17 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "lint": "eslint . --ext .js --fix"
+    "lint": "eslint . --ext .js --fix",
+    "batch": "node src/scripts/batch-process.js",
+    "pokemon": "node src/scripts/process-pokemon.js",
+    "magic": "node src/scripts/process-magic.js",
+    "test": "node src/scripts/process-test-expansions.js",
+    "games": "node src/scripts/list-games.js",
+    "pokemon-list": "node src/scripts/list-pokemon-expansions.js",
+    "magic-list": "node src/scripts/list-magic-expansions.js",
+    "all-expansions": "node src/scripts/list-all-expansions.js",
+    "all-magic": "node src/scripts/list-all-magic-expansions.js",
+    "help": "echo 'Available commands:' && echo '  npm run batch          - Process all expansions (1-2 hours)' && echo '  npm run pokemon        - Process Pokémon cards (10-15 min)' && echo '  npm run magic          - Process Magic cards (15-20 min)' && echo '  npm run test           - Test with 3 specific expansions (1-2 min)' && echo '  npm run games          - List all available games' && echo '  npm run pokemon-list   - List Pokémon expansions' && echo '  npm run magic-list     - List Magic expansions' && echo '  npm run all-expansions - List ALL expansions (3,340+)' && echo '  npm run all-magic      - List ALL Magic expansions'"
   },
   "dependencies": {
     "axios": "^1.7.9",

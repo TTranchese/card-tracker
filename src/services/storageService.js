@@ -1,12 +1,30 @@
 const Datastore = require("nedb");
 const path = require("path");
+const util = require("util");
+const fs = require("fs");
+
+// Fix for NeDB compatibility with newer Node.js versions
+if (!util.isDate) {
+  util.isDate = function(obj) {
+    return Object.prototype.toString.call(obj) === "[object Date]";
+  };
+}
+
+// Ensure .db folder exists
+const dbFolder = path.join(__dirname, "..", "..", ".db");
+if (!fs.existsSync(dbFolder)) {
+  fs.mkdirSync(dbFolder, { recursive: true });
+}
+
+const expansionsDbPath = path.join(dbFolder, "expansions.db");
+const blueprintsDbPath = path.join(dbFolder, "blueprints.db");
 
 const expansionsDb = new Datastore({
-  filename: path.join(__dirname, "expansions.db"),
+  filename: expansionsDbPath,
   autoload: true,
 });
 const blueprintsDb = new Datastore({
-  filename: path.join(__dirname, "blueprints.db"),
+  filename: blueprintsDbPath,
   autoload: true,
 });
 
